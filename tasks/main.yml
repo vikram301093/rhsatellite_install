@@ -100,7 +100,7 @@
     org_id: "{{ redhat_organisation_id }}"
     pool: ".*Red Hat (Enterprise Linux|Satellite).*"
   when: redhat_activationkey is defined
-        redhat_organisation_id
+        redhat_organisation_id is defined
         
 
 - name: Add subs by pool id if your version of Ansible has a buggy redhat_subscription module
