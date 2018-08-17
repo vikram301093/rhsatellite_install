@@ -148,7 +148,7 @@
   register: install_correctly
 
 - name: Run Satellite installer
-  command: satellite-installer --scenario satellite --foreman-initial-organization "{{ satins_initial_organization }}" --foreman-initial-location "{{ satins_initial_location }}" --foreman-admin-username admin --foreman-admin-password "{{ satins_admin_password }}""
+  command: satellite-installer --scenario satellite --foreman-initial-organization "{{ satins_initial_organization }}" --foreman-initial-location "{{ satins_initial_location }}" --foreman-admin-username admin --foreman-admin-password "{{ satins_admin_password }}"
   #when: install_correctly.changed == true
 
 - name: Capture Satellite admin password
