@@ -158,9 +158,9 @@
 
 - name: Copy manifest to Satellite server
   copy:
-    src: manifest.zip
-    dest: /tmp/manifest.zip
+    src: manifest_Amos_Satellite.zip
+    dest: /tmp/manifest_Amos_Satellite.zip
 
 - name: Upload manifest
-  command: hammer -u admin -p {{ result.stdout }} subscription upload --organization "{{ satellite_initial_organization | default('Default Organization') }}" --file /tmp/manifest.zip
+  command: hammer -u admin -p {{ result.stdout }} subscription upload --organization "{{ satellite_initial_organization | default('Default Organization') }}" --file /tmp/manifest_Amos_Satellite.zip
 ...
