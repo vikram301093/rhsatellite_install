@@ -162,6 +162,5 @@
     src: manifest_Amos_Satellite.zip
     dest: /tmp/manifest_Amos_Satellite.zip
 
-- name: Upload manifest
-  command: hammer -u admin -p {{ result.stdout }} subscription upload --organization "{{ satins_initial_organization  }}" --file /tmp/manifest_Amos_Satellite.zip
+
 ...
