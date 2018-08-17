@@ -148,20 +148,20 @@
   register: install_correctly
 
 - name: Run Satellite installer
-  command: satellite-installer --scenario satellite
-  when: install_correctly.changed == true
+  command: satellite-installer --scenario satellite --foreman-initial-organization "{{ satins_initial_organization }}" --foreman-initial-location "{{ satins_initial_location }}" --foreman-admin-username admin --foreman-admin-password "{{ satins_admin_password }}""
+  #when: install_correctly.changed == true
 
 - name: Capture Satellite admin password
   become: yes
-  shell: cat /etc/foreman-installer/scenarios.d/role-ansible-satellite6-answers.yaml | grep " admin_password" | awk '{print $2}'
+  shell: cat /etc/foreman-installer/scenarios.d/satellite-answers.yaml | grep " admin_password" | awk '{print $2}'
   changed_when: False
   register: result
 
-#- name: Copy manifest to Satellite server
-#  copy:
-#    src: manifest_Amos_Satellite.zip
-#    dest: /tmp/manifest_Amos_Satellite.zip
+- name: Copy manifest to Satellite server
+  copy:
+    src: manifest_Amos_Satellite.zip
+    dest: /tmp/manifest_Amos_Satellite.zip
 
-#- name: Upload manifest
-#  command: hammer -u admin -p {{ result.stdout }} subscription upload --organization "{{ satellite_initial_organization | default('Default Organization') }}" --file /tmp/manifest_Amos_Satellite.zip
+- name: Upload manifest
+  command: hammer -u admin -p {{ result.stdout }} subscription upload --organization "{{ satins_initial_organization  }}" --file /tmp/manifest_Amos_Satellite.zip
 ...
